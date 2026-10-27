@@ -1,0 +1,12 @@
+apiVersion: solution.sap/v1
+kind: Solution
+
+metadata:
+  name: product-master-data-4fee4
+  version: "1.0.0"
+  description: AI agent enabling Sales Representatives to query SAP S/4HANA product master data using natural language via SAP Joule.
+
+assets:
+  - ref: ./assets/product-master-data-agent/asset.yaml
+  - ref: ./assets/sap-s4-product-srv-mcp-server/asset.yaml
+  - ref: ./assets/sap-s4-clfn-product-srv-mcp-server/asset.yaml

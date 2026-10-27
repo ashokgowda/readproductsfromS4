@@ -1,0 +1,649 @@
+{
+  "servers": {
+    "sap-s4-product-srv": {
+      "mcp_server_name": "sap.s4/API_PRODUCT_SRV",
+      "description": "SAP S/4HANA Product Master (A2X) OData service — product descriptions, units of measure, and categories.",
+      "tools": {
+        "get_metadata_api_product_srv": {
+          "description": "Get metadata of the OData service API_PRODUCT_SRV.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$format": { "type": "string", "description": "Response format (json or xml)" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "edmx:Edmx": {
+              "edmx:DataServices": {
+                "Schema": [
+                  { "Namespace": "API_PRODUCT_SRV", "EntityType": [] }
+                ]
+              }
+            }
+          }
+        },
+        "batch_for_api_product_srv": {
+          "description": "Execute multiple OData operations in a single batch request.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "requests": { "type": "array", "description": "Array of batch requests" }
+            },
+            "required": []
+          },
+          "mock_response": { "responses": [] }
+        },
+        "list_a_product_for_api_product_srv": {
+          "description": "Retrieve a list of products from the A_Product collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer", "description": "Maximum number of records to return" },
+              "$skip": { "type": "integer", "description": "Number of records to skip" },
+              "$filter": { "type": "string", "description": "OData filter expression" },
+              "$select": { "type": "string", "description": "Comma-separated list of fields to return" },
+              "$orderby": { "type": "string", "description": "Sort order" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "ProductType": "FERT",
+                "BaseUnit": "EA",
+                "ProductGroup": "L001",
+                "Division": "00",
+                "GrossWeight": "1.500",
+                "WeightUnit": "KG",
+                "NetWeight": "1.200",
+                "SizeOrDimensionText": "30x20x10cm",
+                "IsConfigurableProduct": false,
+                "CreationDate": "/Date(1609459200000)/",
+                "LastChangeDate": "/Date(1700000000000)/"
+              },
+              {
+                "Product": "MZ-FG-S5",
+                "ProductType": "FERT",
+                "BaseUnit": "PC",
+                "ProductGroup": "L003",
+                "Division": "00",
+                "GrossWeight": "0.800",
+                "WeightUnit": "KG",
+                "NetWeight": "0.700",
+                "SizeOrDimensionText": "15x10x5cm",
+                "IsConfigurableProduct": false,
+                "CreationDate": "/Date(1609459200000)/",
+                "LastChangeDate": "/Date(1700000000000)/"
+              }
+            ]
+          }
+        },
+        "get_a_product_for_api_product_srv": {
+          "description": "Retrieve a single product entity by its key from the A_Product collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string", "description": "Product number (key field)" },
+              "$select": { "type": "string", "description": "Comma-separated list of fields to return" }
+            },
+            "required": ["Product"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "ProductType": "FERT",
+            "BaseUnit": "EA",
+            "ProductGroup": "L001",
+            "Division": "00",
+            "GrossWeight": "1.500",
+            "WeightUnit": "KG",
+            "NetWeight": "1.200",
+            "SizeOrDimensionText": "30x20x10cm",
+            "IsConfigurableProduct": false,
+            "CreationDate": "/Date(1609459200000)/",
+            "LastChangeDate": "/Date(1700000000000)/"
+          }
+        },
+        "count_a_product_for_api_product_srv": {
+          "description": "Get the total count of entities in the A_Product collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$filter": { "type": "string", "description": "OData filter expression" }
+            },
+            "required": []
+          },
+          "mock_response": 42
+        },
+        "list_a_productdescription_for_api_product_srv": {
+          "description": "Retrieve a list of product descriptions from the A_ProductDescription collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer", "description": "Maximum number of records to return" },
+              "$filter": { "type": "string", "description": "OData filter expression" },
+              "$select": { "type": "string", "description": "Comma-separated list of fields to return" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "Language": "EN",
+                "ProductDescription": "Notebook Basic 15"
+              },
+              {
+                "Product": "MZ-FG-S5",
+                "Language": "EN",
+                "ProductDescription": "Smartphone Model S5"
+              }
+            ]
+          }
+        },
+        "get_a_productdescription_for_api_product_srv": {
+          "description": "Retrieve a single product description entity by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string", "description": "Product number" },
+              "Language": { "type": "string", "description": "Language key (e.g. EN)" }
+            },
+            "required": ["Product", "Language"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "Language": "EN",
+            "ProductDescription": "Notebook Basic 15"
+          }
+        },
+        "count_a_productdescription_for_api_product_srv": {
+          "description": "Get the total count of product descriptions.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 42
+        },
+        "list_a_productbasictext_for_api_product_srv": {
+          "description": "Retrieve a list of basic texts from the A_ProductBasicText collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "Language": "EN",
+                "LongText": "High-performance notebook with 15-inch display, suitable for business use."
+              }
+            ]
+          }
+        },
+        "get_a_productbasictext_for_api_product_srv": {
+          "description": "Retrieve a single basic text entity by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "Language": { "type": "string" }
+            },
+            "required": ["Product", "Language"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "Language": "EN",
+            "LongText": "High-performance notebook with 15-inch display, suitable for business use."
+          }
+        },
+        "count_a_productbasictext_for_api_product_srv": {
+          "description": "Get the total count of product basic texts.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 10
+        },
+        "list_a_productplant_for_api_product_srv": {
+          "description": "Retrieve a list of product plant data from the A_ProductPlant collection.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "Plant": "1710",
+                "ProfitCenter": "YB110",
+                "GoodsReceiptBlockedStockQty": "0.000",
+                "BaseUnit": "EA"
+              }
+            ]
+          }
+        },
+        "get_a_productplant_for_api_product_srv": {
+          "description": "Retrieve a single product plant entity by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "Plant": { "type": "string" }
+            },
+            "required": ["Product", "Plant"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "Plant": "1710",
+            "ProfitCenter": "YB110",
+            "GoodsReceiptBlockedStockQty": "0.000",
+            "BaseUnit": "EA"
+          }
+        },
+        "count_a_productplant_for_api_product_srv": {
+          "description": "Get the total count of product plant entries.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 5
+        }
+      }
+    },
+    "sap-s4-clfn-product-srv": {
+      "mcp_server_name": "sap.s4/API_CLFN_PRODUCT_SRV",
+      "description": "SAP S/4HANA Product Master Data Including Classification — product classes and characteristic values.",
+      "tools": {
+        "get_metadata_api_clfn_product_srv": {
+          "description": "Get metadata of the OData service API_CLFN_PRODUCT_SRV.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$format": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "edmx:Edmx": {
+              "edmx:DataServices": {
+                "Schema": [
+                  { "Namespace": "API_CLFN_PRODUCT_SRV", "EntityType": [] }
+                ]
+              }
+            }
+          }
+        },
+        "batch_for_api_clfn_product_srv": {
+          "description": "Execute multiple OData batch operations.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": { "responses": [] }
+        },
+        "list_a_clfnproduct_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of classified products.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" },
+              "$select": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "IsMarkedForDeletion": false
+              },
+              {
+                "Product": "MZ-FG-S5",
+                "ClassType": "001",
+                "IsMarkedForDeletion": false
+              }
+            ]
+          }
+        },
+        "get_a_clfnproduct_for_api_clfn_product_srv": {
+          "description": "Retrieve a single classified product entry.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "ClassType": { "type": "string" }
+            },
+            "required": ["Product", "ClassType"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "ClassType": "001",
+            "IsMarkedForDeletion": false
+          }
+        },
+        "count_a_clfnproduct_for_api_clfn_product_srv": {
+          "description": "Get the total count of classified products.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 15
+        },
+        "list_a_productclass_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of product class assignments.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "ClassStatus": "1",
+                "StandardClass": true
+              }
+            ]
+          }
+        },
+        "get_a_productclass_for_api_clfn_product_srv": {
+          "description": "Retrieve a single product class assignment.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "ClassType": { "type": "string" },
+              "Class": { "type": "string" }
+            },
+            "required": ["Product", "ClassType", "Class"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "ClassType": "001",
+            "Class": "NOTEBOOK",
+            "ClassStatus": "1",
+            "StandardClass": true
+          }
+        },
+        "count_a_productclass_for_api_clfn_product_srv": {
+          "description": "Get the total count of product class entries.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 8
+        },
+        "list_a_productcharc_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of product characteristics.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "CharcInternalID": "1000",
+                "Characteristic": "SCREEN_SIZE",
+                "CharcDataType": "NUM"
+              },
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "CharcInternalID": "1001",
+                "Characteristic": "COLOR",
+                "CharcDataType": "CHAR"
+              }
+            ]
+          }
+        },
+        "get_a_productcharc_for_api_clfn_product_srv": {
+          "description": "Retrieve a single product characteristic by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "ClassType": { "type": "string" },
+              "Class": { "type": "string" },
+              "CharcInternalID": { "type": "string" }
+            },
+            "required": ["Product", "ClassType", "Class", "CharcInternalID"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "ClassType": "001",
+            "Class": "NOTEBOOK",
+            "CharcInternalID": "1000",
+            "Characteristic": "SCREEN_SIZE",
+            "CharcDataType": "NUM"
+          }
+        },
+        "count_a_productcharc_for_api_clfn_product_srv": {
+          "description": "Get the total count of product characteristics.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 5
+        },
+        "list_a_productcharcvalue_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of product characteristic values.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "CharcInternalID": "1000",
+                "CharcValuePositionNumber": "0001",
+                "CharcValue": "15",
+                "CharcFromNumericValue": "15.000",
+                "UnitOfMeasure": "IN"
+              },
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "CharcInternalID": "1001",
+                "CharcValuePositionNumber": "0001",
+                "CharcValue": "BLACK",
+                "CharcFromNumericValue": "0.000",
+                "UnitOfMeasure": ""
+              }
+            ]
+          }
+        },
+        "get_a_productcharcvalue_for_api_clfn_product_srv": {
+          "description": "Retrieve a single product characteristic value by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "ClassType": { "type": "string" },
+              "Class": { "type": "string" },
+              "CharcInternalID": { "type": "string" },
+              "CharcValuePositionNumber": { "type": "string" }
+            },
+            "required": ["Product", "ClassType", "Class", "CharcInternalID", "CharcValuePositionNumber"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "ClassType": "001",
+            "Class": "NOTEBOOK",
+            "CharcInternalID": "1000",
+            "Characteristic": "SCREEN_SIZE",
+            "CharcValuePositionNumber": "0001",
+            "CharcValue": "15",
+            "CharcFromNumericValue": "15.000",
+            "UnitOfMeasure": "IN"
+          }
+        },
+        "count_a_productcharcvalue_for_api_clfn_product_srv": {
+          "description": "Get the total count of product characteristic values.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 10
+        },
+        "list_a_productclasscharc_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of product class characteristics.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "CharcInternalID": "1000",
+                "Characteristic": "SCREEN_SIZE"
+              }
+            ]
+          }
+        },
+        "get_a_productclasscharc_for_api_clfn_product_srv": {
+          "description": "Retrieve a single product class characteristic by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "ClassType": { "type": "string" },
+              "Class": { "type": "string" },
+              "CharcInternalID": { "type": "string" }
+            },
+            "required": ["Product", "ClassType", "Class", "CharcInternalID"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "ClassType": "001",
+            "Class": "NOTEBOOK",
+            "CharcInternalID": "1000",
+            "Characteristic": "SCREEN_SIZE"
+          }
+        },
+        "count_a_productclasscharc_for_api_clfn_product_srv": {
+          "description": "Get the total count of product class characteristics.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 3
+        },
+        "list_a_clfnclassforkeydate_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of classification classes for a key date.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "ClassType": "001",
+                "Class": "NOTEBOOK",
+                "ClassTypeName": "Material Class",
+                "ClassName": "Notebook Products",
+                "ValidityStartDate": "/Date(0)/",
+                "ValidityEndDate": "/Date(9999999999000)/"
+              }
+            ]
+          }
+        },
+        "get_a_clfnclassforkeydate_for_api_clfn_product_srv": {
+          "description": "Retrieve a single class-for-key-date entry by its key.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "ClassType": { "type": "string" },
+              "Class": { "type": "string" },
+              "KeyDate": { "type": "string" }
+            },
+            "required": ["ClassType", "Class", "KeyDate"]
+          },
+          "mock_response": {
+            "ClassType": "001",
+            "Class": "NOTEBOOK",
+            "ClassTypeName": "Material Class",
+            "ClassName": "Notebook Products",
+            "ValidityStartDate": "/Date(0)/",
+            "ValidityEndDate": "/Date(9999999999000)/"
+          }
+        },
+        "count_a_clfnclassforkeydate_for_api_clfn_product_srv": {
+          "description": "Get the total count of classification classes for key date.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 3
+        },
+        "list_a_productdescription_for_api_clfn_product_srv": {
+          "description": "Retrieve a list of product descriptions from the classification API.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "$top": { "type": "integer" },
+              "$filter": { "type": "string" }
+            },
+            "required": []
+          },
+          "mock_response": {
+            "results": [
+              {
+                "Product": "TG-11",
+                "Language": "EN",
+                "ProductDescription": "Notebook Basic 15"
+              }
+            ]
+          }
+        },
+        "get_a_productdescription_for_api_clfn_product_srv": {
+          "description": "Retrieve a single product description from the classification API.",
+          "input_schema": {
+            "type": "object",
+            "properties": {
+              "Product": { "type": "string" },
+              "Language": { "type": "string" }
+            },
+            "required": ["Product", "Language"]
+          },
+          "mock_response": {
+            "Product": "TG-11",
+            "Language": "EN",
+            "ProductDescription": "Notebook Basic 15"
+          }
+        },
+        "count_a_productdescription_for_api_clfn_product_srv": {
+          "description": "Get the total count of product descriptions in the classification API.",
+          "input_schema": { "type": "object", "properties": {}, "required": [] },
+          "mock_response": 5
+        }
+      }
+    }
+  },
+  "metadata": {
+    "version": "1.0.0",
+    "created_for_agent": "product-master-data-agent",
+    "mock_mode": true,
+    "deterministic": true,
+    "total_servers": 2,
+    "total_tools": 37,
+    "generated_from": [
+      "assets/sap-s4-product-srv-mcp-server/mcp-translation/translation.json",
+      "assets/sap-s4-clfn-product-srv-mcp-server/mcp-translation/translation.json"
+    ],
+    "generation_date": "2026-10-26"
+  }
+}
